@@ -15,6 +15,17 @@ import Slot from './components/Slot.vue';
 </script>
 
 <template>
+  <!-- Routing: Router Link -->
+  <nav>
+    <router-link to="/">Home</router-link>
+    <router-link to="/about">About</router-link>
+    <router-link to="/contatti">About</router-link>
+  </nav>
+
+  <!-- Routing: Router View -->
+  <router-view></router-view>
+
+
   <!-- In ordine corretto -->
   <Components />
   <Props />
@@ -26,11 +37,16 @@ import Slot from './components/Slot.vue';
   <ListRendering />
   <Computed />
   <Lifecycle />
-  <Watchers /> 
+  <Watchers />
   <Emit />
   <Slot />
 
 </template>
 
 
-<!-- <style scoped></style> -->
+<style scoped>
+/* Stile per il router */
+.router-link-active {
+  color: red;
+}
+</style>
