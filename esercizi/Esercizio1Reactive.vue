@@ -1,0 +1,33 @@
+<script setup>
+import { reactive } from 'vue'
+import CardUtente from './CardUtente.vue'
+
+const stato = reactive({
+    utenti: [
+        { id: 1, nome: 'Bob', cognome: 'Mufasa', mail: 'mufasa@gmail.com', ruolo: 'USER' },
+        { id: 2, nome: 'Patrik', cognome: 'Stella', mail: 'stellina@acqua.com', ruolo: 'ADMIN' },
+        { id: 3, nome: 'Spongebob', cognome: 'Squarepants', mail: 'spugna@arrembaggio.com', ruolo: 'USER' },
+        { id: 4, nome: 'Freddy', cognome: 'Mercurio', mail: 'termometro@musicale.com', ruolo: 'ADMIN' },
+    ],
+    filtroAttuale: 'tutti'
+});
+
+</script>
+
+<template>
+    <div>
+        <h1>Lista Utenti</h1>
+
+        <div>
+            <button @click="stato.filtroAttuale = 'tutti'">Mostra tutti</button>
+            <button @click="stato.filtroAttuale = 'user'">Mostra solo gli user</button>
+            <button @click="stato.filtroAttuale = 'admin'">Mostra solo gli admin</button>
+        </div>
+
+        <div v-for="utente in stato.utenti" :key="utente.id">
+            <CardUtente v-if="stato.filtroAttuale === 'tutti' || stato.filtroAttuale === utente.ruolo.toLowerCase()"
+                :nome="utente.nome" :cognome="utente.cognome" :mail="utente.mail" :ruolo="utente.ruolo" />
+        </div>
+    </div>
+</template>
+
